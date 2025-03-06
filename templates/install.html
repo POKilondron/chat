@@ -1,0 +1,149 @@
+
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Install Pock Empire</title>
+    <link rel="stylesheet" href="https://cdn.replit.com/agent/bootstrap-agent-dark-theme.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    {% include 'favicon.html' %}
+    <style>
+        .installation-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .step {
+            margin-bottom: 30px;
+            border-left: 4px solid #0d6efd;
+            padding-left: 20px;
+        }
+        .code-block {
+            background-color: #212529;
+            border-radius: 5px;
+            padding: 15px;
+            font-family: monospace;
+            overflow-x: auto;
+        }
+        .btn-copy {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+        }
+        .step-number {
+            background-color: #0d6efd;
+            color: white;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container installation-container">
+        <h1 class="text-center mb-5">
+            <div class="favicon-container d-inline-block me-3">
+                <div class="triangle triangle-red"></div>
+                <div class="triangle triangle-yellow"></div>
+                <div class="triangle triangle-green"></div>
+                <div class="circle"></div>
+            </div>
+            Install Pock Empire
+        </h1>
+        
+        <div class="alert alert-info">
+            <i class="bi bi-info-circle-fill me-2"></i>
+            Follow these instructions to run Pock Empire on your computer.
+        </div>
+        
+        <div class="step">
+            <h3><span class="step-number">1</span> Install Python</h3>
+            <p>First, make sure you have Python 3.8 or higher installed.</p>
+            <div class="mb-3">
+                <a href="https://www.python.org/downloads/" class="btn btn-primary" target="_blank">
+                    <i class="bi bi-download me-2"></i>Download Python
+                </a>
+            </div>
+            <p>During installation, remember to check the "Add Python to PATH" option.</p>
+        </div>
+        
+        <div class="step">
+            <h3><span class="step-number">2</span> Download the Application</h3>
+            <p>Download the Pock Empire application package:</p>
+            <div class="mb-3">
+                <a href="{{ url_for('download_app') }}" class="btn btn-success">
+                    <i class="bi bi-download me-2"></i>Download Pock Empire
+                </a>
+            </div>
+            <p>Extract the ZIP file to a folder on your computer.</p>
+        </div>
+        
+        <div class="step">
+            <h3><span class="step-number">3</span> Install Dependencies</h3>
+            <p>Open a terminal or command prompt, navigate to the folder where you extracted the files, and run:</p>
+            <div class="code-block position-relative">
+                <pre><code>pip install -r requirements.txt</code></pre>
+                <button class="btn btn-sm btn-outline-light btn-copy" onclick="copyToClipboard('pip install -r requirements.txt')">
+                    <i class="bi bi-clipboard"></i>
+                </button>
+            </div>
+        </div>
+        
+        <div class="step">
+            <h3><span class="step-number">4</span> Run the Application</h3>
+            <p>After installing dependencies, start the application with:</p>
+            <div class="code-block position-relative">
+                <pre><code>python app.py</code></pre>
+                <button class="btn btn-sm btn-outline-light btn-copy" onclick="copyToClipboard('python app.py')">
+                    <i class="bi bi-clipboard"></i>
+                </button>
+            </div>
+        </div>
+        
+        <div class="step">
+            <h3><span class="step-number">5</span> Access the Application</h3>
+            <p>Open your web browser and navigate to:</p>
+            <div class="code-block position-relative">
+                <pre><code>http://localhost:5000</code></pre>
+                <button class="btn btn-sm btn-outline-light btn-copy" onclick="copyToClipboard('http://localhost:5000')">
+                    <i class="bi bi-clipboard"></i>
+                </button>
+            </div>
+            <p>Or use our quick-launch method by opening:</p>
+            <div class="code-block position-relative">
+                <pre><code>http://localhost:5000/start</code></pre>
+                <button class="btn btn-sm btn-outline-light btn-copy" onclick="copyToClipboard('http://localhost:5000/start')">
+                    <i class="bi bi-clipboard"></i>
+                </button>
+            </div>
+        </div>
+        
+        <div class="alert alert-warning mt-4">
+            <h4><i class="bi bi-shield-lock-fill me-2"></i>Security Notice</h4>
+            <p>Administrative access is restricted to authorized personnel only.</p>
+            <p>If you are the administrator, use your personal credentials to access the system.</p>
+        </div>
+        
+        <div class="text-center mt-4">
+            <a href="{{ url_for('index') }}" class="btn btn-outline-primary">
+                <i class="bi bi-house-door"></i> Back to Home
+            </a>
+        </div>
+    </div>
+    
+    <script>
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                alert('Copied to clipboard!');
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+            });
+        }
+    </script>
+</body>
+</html>

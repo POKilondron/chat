@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pock Empire</title>
+    <link rel="stylesheet" href="https://cdn.replit.com/agent/bootstrap-agent-dark-theme.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="/static/css/logo.css">
+    <style>
+        .hero-section {
+            padding: 5rem 0;
+        }
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #0d6efd;
+        }
+    </style>
+</head>
+<head>
+    <title>Pock Empire - Secure Chat Platform</title>
+    <link rel="icon" href="/static/generated-icon.png" type="image/png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        .hero-section {
+            background-color: #f8f9fa;
+            padding: 4rem 0;
+            text-align: center;
+        }
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #0d6efd;
+        }
+        .btn-lg {
+            padding: 0.75rem 1.5rem;
+            font-size: 1.25rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container py-5">
+        <h1 class="text-center mb-4">Pock Empire</h1>
+        <div class="row justify-content-center hero-section">
+            <div class="col-md-8 text-center">
+                <div class="d-flex justify-content-center align-items-center mb-3">
+                    <div class="site-logo">
+                        <div class="logo-triangle triangle-red"></div>
+                        <div class="logo-triangle triangle-yellow"></div>
+                        <div class="logo-triangle triangle-green"></div>
+                        <div class="logo-circle"></div>
+                    </div>
+                    <h1 class="display-4 mb-0">Welcome to Pock Empire</h1>
+                </div>
+                <p class="lead mb-5">Real-time messaging with file sharing capabilities</p>
+
+                <div class="d-grid gap-3 col-md-6 mx-auto">
+                    {% if current_user.is_authenticated %}
+                        <a href="{{ url_for('rooms') }}" class="btn btn-primary btn-lg">
+                            <i class="bi bi-chat-dots"></i> Go to Chat Rooms
+                        </a>
+                        <a href="{{ url_for('logout') }}" class="btn btn-outline-danger">
+                            <i class="bi bi-box-arrow-right"></i> Logout
+                        </a>
+                    {% else %}
+                        <a href="{{ url_for('login') }}" class="btn btn-primary btn-lg">
+                            <i class="bi bi-box-arrow-in-right"></i> Login
+                        </a>
+                        <a href="{{ url_for('register') }}" class="btn btn-outline-primary btn-lg">
+                            <i class="bi bi-person-plus"></i> Register
+                        </a>
+                        <a href="{{ url_for('install') }}" class="btn btn-info btn-lg mt-3">
+                            <i class="bi bi-download me-2"></i>Download App
+                        </a>
+                        <a href="{{ url_for('start') }}" class="btn btn-success btn-lg mt-3">
+                            <i class="bi bi-rocket-takeoff me-2"></i>Quick Launch
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-5">
+            <div class="col-md-4 text-center mb-4">
+                <div class="feature-icon">
+                    <i class="bi bi-chat-square-text"></i>
+                </div>
+                <h3>Real-time Chat</h3>
+                <p>Exchange messages instantly without page refreshes</p>
+            </div>
+            <div class="col-md-4 text-center mb-4">
+                <div class="feature-icon">
+                    <i class="bi bi-file-earmark-image"></i>
+                </div>
+                <h3>File Sharing</h3>
+                <p>Share images and files with other chat members</p>
+            </div>
+            <div class="col-md-4 text-center mb-4">
+                <div class="feature-icon">
+                    <i class="bi bi-shield-lock"></i>
+                </div>
+                <h3>Secure</h3>
+                <p>Your conversations are protected</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

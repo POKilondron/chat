@@ -1,0 +1,29 @@
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><polygon points='50,15 30,60 70,60' fill='%23ff3b30'/><polygon points='50,15 30,60 70,60' fill='%23ffcc00' transform='rotate(120 50 50)'/><polygon points='50,15 30,60 70,60' fill='%2334c759' transform='rotate(240 50 50)'/><circle cx='50' cy='50' r='15' fill='%23007aff'/></svg>">
+<link rel="stylesheet" href="/static/css/logo.css">
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Favicon Generator</title>
+  <link rel="stylesheet" href="/static/css/favicon.css">
+</head>
+<body>
+  <div class="favicon-container">
+    <div class="triangle triangle-red"></div>
+    <div class="triangle triangle-yellow"></div>
+    <div class="triangle triangle-green"></div>
+    <div class="circle"></div>
+  </div>
+  <script>
+    // Этот скрипт преобразует фавикон в изображение
+    document.addEventListener('DOMContentLoaded', function() {
+      const container = document.querySelector('.favicon-container');
+      html2canvas(container).then(canvas => {
+        const imgData = canvas.toDataURL('image/png');
+        // Здесь можно сохранить или использовать изображение
+        console.log('Favicon created:', imgData);
+      });
+    });
+  </script>
+</body>
+</html>

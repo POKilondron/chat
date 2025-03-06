@@ -1,0 +1,115 @@
+
+.site-logo {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.logo-circle {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: #0066cc;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+}
+
+.logo-triangle {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+}
+
+.triangle-red {
+    border-width: 0 15px 26px 15px;
+    border-color: transparent transparent #ff3333 transparent;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.triangle-yellow {
+    border-width: 26px 15px 0 15px;
+    border-color: #ffcc00 transparent transparent transparent;
+    bottom: 0;
+    left: 0;
+}
+
+.triangle-green {
+    border-width: 26px 15px 0 15px;
+    border-color: #33cc33 transparent transparent transparent;
+    bottom: 0;
+    right: 0;
+}
+.site-logo {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    margin-right: 15px;
+}
+
+.logo-triangle {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+}
+
+.triangle-red {
+    border-width: 0 20px 35px 20px;
+    border-color: transparent transparent #ff3b30 transparent;
+    transform: rotate(0deg);
+    top: 0;
+    left: 0;
+}
+
+.triangle-yellow {
+    border-width: 0 20px 35px 20px;
+    border-color: transparent transparent #ffcc00 transparent;
+    transform: rotate(120deg);
+    top: 0;
+    left: 0;
+}
+
+.triangle-green {
+    border-width: 0 20px 35px 20px;
+    border-color: transparent transparent #34c759 transparent;
+    transform: rotate(240deg);
+    top: 0;
+    left: 0;
+}
+
+.logo-circle {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: #007aff;
+    border-radius: 50%;
+    top: 10px;
+    left: 10px;
+}
+
+/* Smaller version for favicon */
+.favicon-logo {
+    position: relative;
+    width: 32px;
+    height: 32px;
+    display: inline-block;
+}
+
+.favicon-logo .logo-triangle {
+    border-width: 0 16px 28px 16px;
+}
+
+.favicon-logo .logo-circle {
+    width: 16px;
+    height: 16px;
+    top: 8px;
+    left: 8px;
+}

@@ -1,0 +1,114 @@
+
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Rooms - Pock Empire</title>
+    <link rel="stylesheet" href="https://cdn.replit.com/agent/bootstrap-agent-dark-theme.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <style>
+        .room-card {
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .room-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        .room-card .card-header {
+            font-weight: bold;
+        }
+        .room-meta {
+            font-size: 0.85rem;
+            color: #aaa;
+        }
+    </style>
+</head>
+<body>
+    <div class="container py-4">
+        <div class="row mb-4">
+            <div class="col d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center">
+                    <div class="site-logo">
+                        <div class="logo-triangle triangle-red"></div>
+                        <div class="logo-triangle triangle-yellow"></div>
+                        <div class="logo-triangle triangle-green"></div>
+                        <div class="logo-circle"></div>
+                    </div>
+                    <h1>Chat Rooms</h1>
+                </div>
+                <div>
+                    <a href="{{ url_for('index') }}" class="btn btn-outline-primary me-2">
+                        <i class="bi bi-house"></i> Home
+                    </a>
+                    <a href="{{ url_for('logout') }}" class="btn btn-outline-danger">
+                        <i class="bi bi-box-arrow-right"></i> Logout
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-4">
+            <div class="col-md-8 mx-auto">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0">Create New Room</h5>
+                    </div>
+                    <div class="card-body">
+                        <form method="POST" action="{{ url_for('create_room') }}">
+                            {{ form.hidden_tag() }}
+                            <div class="mb-3">
+                                <label for="{{ form.name.id }}" class="form-label">Room Name</label>
+                                {{ form.name(class="form-control", placeholder="Enter room name") }}
+                            </div>
+                            <div class="mb-3">
+                                <label for="{{ form.description.id }}" class="form-label">Description</label>
+                                {{ form.description(class="form-control", placeholder="Enter room description", rows=2) }}
+                            </div>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="bi bi-plus-circle"></i> Create Room
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            {% if rooms %}
+                {% for room in rooms %}
+                    <div class="col-md-4 mb-4">
+                        <div class="card room-card h-100">
+                            <div class="card-header">{{ room.name }}</div>
+                            <div class="card-body">
+                                <p class="card-text">{{ room.description }}</p>
+                                <div class="room-meta mb-3">
+                                    <div><i class="bi bi-calendar3"></i> Created: {{ room.created_at.strftime('%d %b %Y') }}</div>
+                                    <div><i class="bi bi-person"></i> By: {{ room.created_by.username }}</div>
+                                </div>
+                                <div class="d-flex">
+                                    <a href="{{ url_for('chat', room_id=room.id) }}" class="btn btn-primary me-2">
+                                        <i class="bi bi-chat-dots"></i> Join Chat
+                                    </a>
+                                    {% if current_user.id == room.created_by_id or current_user.is_admin %}
+                                    <form action="{{ url_for('delete_room', room_id=room.id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this room? All messages will be permanently deleted.');">
+                                        <button type="submit" class="btn btn-danger">
+                                            <i class="bi bi-trash"></i> Delete
+                                        </button>
+                                    </form>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div class="col text-center py-5">
+                    <i class="bi bi-chat-square-dots display-1 mb-3 text-muted"></i>
+                    <p class="lead">No chat rooms available. Create your first room!</p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Starting Pock Empire</title>
+    <meta name="robots" content="noindex, nofollow"> <!-- Prevent search engines from indexing this page -->
+    <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #222;
+            color: #fff;
+        }
+        .loading {
+            margin: 30px 0;
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse {
+            0% { opacity: 0.5; }
+            50% { opacity: 1; }
+            100% { opacity: 0.5; }
+        }
+        .progress-bar {
+            height: 10px;
+            background-color: #ddd;
+            border-radius: 5px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+        .progress {
+            height: 100%;
+            background-color: #0d6efd;
+            width: 0%;
+            animation: progress 3s forwards;
+        }
+        @keyframes progress {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+        .btn {
+            background-color: #0d6efd;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+        .favicon-container {
+            margin: 20px auto;
+            position: relative;
+            width: 50px;
+            height: 50px;
+        }
+        .triangle {
+            position: absolute;
+            width: 0;
+            height: 0;
+        }
+        .triangle-red {
+            border-left: 25px solid transparent;
+            border-right: 25px solid transparent;
+            border-bottom: 40px solid #ff6b6b;
+            top: 0;
+            left: 0;
+            transform: rotate(0deg);
+        }
+        .triangle-yellow {
+            border-left: 25px solid transparent;
+            border-right: 25px solid transparent;
+            border-bottom: 40px solid #ffdd59;
+            top: 0;
+            left: 0;
+            transform: rotate(120deg);
+        }
+        .triangle-green {
+            border-left: 25px solid transparent;
+            border-right: 25px solid transparent;
+            border-bottom: 40px solid #48dbfb;
+            top: 0;
+            left: 0;
+            transform: rotate(240deg);
+        }
+        .circle {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: #1e74fd;
+            border-radius: 50%;
+            top: 15px;
+            left: 15px;
+        }
+        .security-banner {
+            background-color: #343a40;
+            color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 30px;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="favicon-container">
+        <div class="triangle triangle-red"></div>
+        <div class="triangle triangle-yellow"></div>
+        <div class="triangle triangle-green"></div>
+        <div class="circle"></div>
+    </div>
+    <h1>Launching Pock Empire</h1>
+    <p>Please wait while we initialize the chat application...</p>
+
+    <div class="progress-bar">
+        <div class="progress"></div>
+    </div>
+
+    <p class="loading">Loading application components...</p>
+
+    <div id="completion-message" style="display: none;">
+        <p>Application is ready!</p>
+        <a href="/" class="btn">Go to Pock Empire</a>
+    </div>
+
+    <div class="security-banner">
+        <p><strong>Secure Access Only</strong> | Administrative functions restricted to authorized personnel.</p>
+    </div>
+
+    <script>
+        // Check if server is running
+        function checkServer() {
+            fetch('/api/health-check')
+                .then(response => {
+                    if (response.ok) {
+                        document.getElementById('completion-message').style.display = 'block';
+                        document.querySelector('.loading').innerHTML = 'Application ready!';
+                    } else {
+                        setTimeout(checkServer, 1000);
+                    }
+                })
+                .catch(error => {
+                    setTimeout(checkServer, 1000);
+                });
+        }
+
+        // Clear any stored credentials from this page
+        function clearStoredCredentials() {
+            if (window.sessionStorage) {
+                sessionStorage.clear();
+            }
+            if (window.localStorage) {
+                // Don't clear everything, just any potential admin info
+                localStorage.removeItem('admin_info');
+                localStorage.removeItem('admin_login');
+                localStorage.removeItem('admin_credentials');
+            }
+        }
+
+        // Run security measures
+        clearStoredCredentials();
+
+        // Start checking after 3 seconds (after animation completes)
+        setTimeout(checkServer, 3000);
+    </script>
+</body>
+</html>
